@@ -12,3 +12,6 @@ module "authenticate" {
     "${var.vault_endpoint}/ui/vault/auth/gsuite/oidc/callback"
   ]
 }
+module "vault-policies" {
+  source = "../hcpoc-base-vault-baseline/modules/default-policies/"
+}
