@@ -15,3 +15,6 @@ module "authenticate" {
 module "vault-policies" {
   source = "../hcpoc-base-vault-baseline/modules/default-policies/"
 }
+module "consul-backend" {
+  source = "../hcpoc-base-vault-baseline/modules/vault-consul-config/"
+}
