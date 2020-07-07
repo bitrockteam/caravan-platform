@@ -15,11 +15,11 @@ module "authenticate" {
 module "vault-policies" {
   source = "../hcpoc-base-vault-baseline/modules/default-policies/"
 }
-provider "consul" {
-  address    = var.consul_endpoint
-  # address    = "vault.hcpoc-boomboom-project.hcpoc.bitrock.it:8500"
-  # token      = data.vault_generic_secret.consul_bootstrap_token.data["secretid"]
+
+data "vault_generic_secret" "consul_bootstrap_token" {
+  path = "secret/consul/bootstrap_token"
 }
+
 module "consul-backend" {
   source = "../hcpoc-base-vault-baseline/modules/vault-consul-config/"
 }
