@@ -18,6 +18,10 @@ variable "gcp_project_id" {
   type    = string
   default = null
 }
+variable "gcp_worker_service_accounts" {
+  type    = list(string)
+  default = []
+}
 
 variable "gsuite_authenticate" {
   type    = bool

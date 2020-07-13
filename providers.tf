@@ -4,6 +4,6 @@ provider "vault" {
 }
 
 provider "consul" {
-  address    = var.consul_endpoint
-  token      = data.vault_generic_secret.consul_bootstrap_token.data["secretid"]
+  address = var.consul_endpoint
+  token   = data.vault_generic_secret.consul_bootstrap_token.data["secretid"]
 }

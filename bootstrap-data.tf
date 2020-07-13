@@ -28,5 +28,5 @@ data "terraform_remote_state" "bootstrap" {
 }
 
 output "butastrappa" {
-   value = data.terraform_remote_state.bootstrap
+  value = data.terraform_remote_state.bootstrap
 }
