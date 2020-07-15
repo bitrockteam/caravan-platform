@@ -51,3 +51,10 @@ variable "gsuite_allowed_redirect_uris" {
   type    = list(string)
   default = []
 }
+variable "region_instance_group" {
+  type    = string
+  default = "grp-mgr-def-wrkr-grp"
+}
+variable "region" {
+  type = string
+}
