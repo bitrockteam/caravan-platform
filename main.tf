@@ -23,4 +23,7 @@ data "vault_generic_secret" "consul_bootstrap_token" {
 
 module "consul-backend" {
   source = "../hcpoc-base-vault-baseline/modules/vault-consul-config/"
+  gcp_project_id            = var.gcp_project_id
+  region_instance_group     = var.region_instance_group
+  region                      = var.region
 }
