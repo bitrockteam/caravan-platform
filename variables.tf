@@ -58,3 +58,11 @@ variable "region_instance_group" {
 variable "region" {
   type = string
 }
+variable "ssh_user" {
+  type    = string
+  default = "centos"
+}
+variable "ssh_timeout" {
+  type    = string
+  default = "120s"
+}

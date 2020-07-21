@@ -26,7 +26,3 @@ data "terraform_remote_state" "bootstrap" {
   backend = local.bootstrap_backend
   config  = local.bootstrap_configs[local.bootstrap_backend]
 }
-
-output "butastrappa" {
-  value = data.terraform_remote_state.bootstrap
-}
