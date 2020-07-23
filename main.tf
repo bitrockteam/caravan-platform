@@ -60,7 +60,7 @@ resource "null_resource" "restart_vault_agent_and_consul" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo mv /tmp/consul.hcl.tmpl /etc/consul.d/consul.hcl.tmpl && sudo systemctl restart vault-agent && sleep 10 && sudo systemctl restart nomad",
+      "sudo mv /tmp/consul.hcl.tmpl /etc/consul.d/consul.hcl.tmpl && sudo systemctl restart vault-agent && sudo systemctl restart nomad",
     ]
 
     connection {
