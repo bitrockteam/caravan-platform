@@ -8,6 +8,11 @@ retry_join = [
    "${cluster_nodes[n]}:8301",
    %{ endfor ~}
 ]
+ports {
+  grpc  = 8502
+  https = 8501
+  http  = 8500
+}
 server = true
 telemetry = {
    prometheus_retention_time = "2s"
