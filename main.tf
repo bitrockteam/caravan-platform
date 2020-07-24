@@ -84,7 +84,7 @@ resource "null_resource" "add_consul_template_with_token" {
  
   provisioner "remote-exec" {
     inline = [
-      "while [ "$(curl -s 'http://127.0.0.1:8500/v1/status/peers' | jq '. | length')" != "3"  ]; do echo "Consul: no enough peers"; sleep 3; done",
+      "while [ \"$(curl -s 'http://127.0.0.1:8500/v1/status/peers' | jq '. | length')\" != \"3\"  ]; do echo \"Consul: no enough peers\"; sleep 3; done",
     ]
 
     connection {
