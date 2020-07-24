@@ -28,7 +28,7 @@ module "consul-backend" {
   region                      = var.region
 }
 
-resource "null_resource" "restart_vault_agent_and_consul" {
+resource "null_resource" "add_consul_template_with_token" {
 
   depends_on = [
     module.authenticate,
@@ -60,7 +60,7 @@ resource "null_resource" "restart_vault_agent_and_consul" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo mv /tmp/consul.hcl.tmpl /etc/consul.d/consul.hcl.tmpl && sudo systemctl restart vault-agent && sudo systemctl restart nomad",
+      "sudo mv /tmp/consul.hcl.tmpl /etc/consul.d/consul.hcl.tmpl",
     ]
 
     connection {
@@ -71,4 +71,43 @@ resource "null_resource" "restart_vault_agent_and_consul" {
       host        = each.value
     }
   }
+}
+
+resource "null_resource" "add_consul_template_with_token" {
+
+  depends_on = [
+    module.authenticate,
+    module.vault-policies,
+    module.consul-backend,
+    null_resource.add_consul_template_with_token,
+  ]
+ 
+  provisioner "remote-exec" {
+    inline = [
+      "while [ "$(curl -s 'http://127.0.0.1:8500/v1/status/peers' | jq '. | length')" != "3"  ]; do echo "Consul: no enough peers"; sleep 3; done",
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = var.ssh_user
+      private_key = file("../hcpoc-base-terraform-bootstrap-gcp/ssh-key")
+      timeout     = var.ssh_timeout
+      host        = each.value
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo systemctl restart vault-agent && sudo systemctl restart nomad",
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = var.ssh_user
+      private_key = file("../hcpoc-base-terraform-bootstrap-gcp/ssh-key")
+      timeout     = var.ssh_timeout
+      host        = each.value
+    }
+  }
+
 }
