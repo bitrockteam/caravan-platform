@@ -22,10 +22,10 @@ data "vault_generic_secret" "consul_bootstrap_token" {
 }
 
 module "consul-backend" {
-  source = "../hcpoc-base-vault-baseline/modules/vault-consul-config/"
-  gcp_project_id            = var.gcp_project_id
-  region_instance_group     = var.region_instance_group
-  region                      = var.region
+  source                = "../hcpoc-base-vault-baseline/modules/vault-consul-config/"
+  gcp_project_id        = var.gcp_project_id
+  region_instance_group = var.region_instance_group
+  region                = var.region
 }
 
 resource "null_resource" "add_consul_template_with_token" {
@@ -43,34 +43,34 @@ resource "null_resource" "add_consul_template_with_token" {
     content = <<-EOT
     ${templatefile(
     "${path.module}/files/consul-server.hcl.tmpl",
-        {
-          cluster_nodes = data.terraform_remote_state.bootstrap.outputs.cluster-private-ips
-          node_id       = each.key
-        }
-    )}
+    {
+      cluster_nodes = data.terraform_remote_state.bootstrap.outputs.cluster-private-ips
+      node_id       = each.key
+    }
+)}
     EOT
-    connection {
-      type        = "ssh"
-      user        = var.ssh_user
-      private_key = file("../hcpoc-base-terraform-bootstrap-gcp/ssh-key")
-      timeout     = var.ssh_timeout
-      host        = each.value
-    }
-  }
+connection {
+  type        = "ssh"
+  user        = var.ssh_user
+  private_key = file("../hcpoc-base-terraform-bootstrap-gcp/ssh-key")
+  timeout     = var.ssh_timeout
+  host        = each.value
+}
+}
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo mv /tmp/consul.hcl.tmpl /etc/consul.d/consul.hcl.tmpl",
-    ]
+provisioner "remote-exec" {
+  inline = [
+    "sudo mv /tmp/consul.hcl.tmpl /etc/consul.d/consul.hcl.tmpl",
+  ]
 
-    connection {
-      type        = "ssh"
-      user        = var.ssh_user
-      private_key = file("../hcpoc-base-terraform-bootstrap-gcp/ssh-key")
-      timeout     = var.ssh_timeout
-      host        = each.value
-    }
+  connection {
+    type        = "ssh"
+    user        = var.ssh_user
+    private_key = file("../hcpoc-base-terraform-bootstrap-gcp/ssh-key")
+    timeout     = var.ssh_timeout
+    host        = each.value
   }
+}
 }
 
 resource "null_resource" "wait_and_restart" {
@@ -81,9 +81,9 @@ resource "null_resource" "wait_and_restart" {
     module.consul-backend,
     null_resource.add_consul_template_with_token,
   ]
-  
+
   for_each = data.terraform_remote_state.bootstrap.outputs.cluster-public-ips
-  
+
   provisioner "remote-exec" {
     inline = [
       "while [ \"$(curl -s 'http://127.0.0.1:8500/v1/status/peers' | jq '. | length')\" != \"3\"  ]; do echo \"Consul: no enough peers\"; sleep 3; done",
