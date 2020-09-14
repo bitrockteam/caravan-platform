@@ -51,6 +51,25 @@ variable "gsuite_allowed_redirect_uris" {
   type    = list(string)
   default = []
 }
+
+variable "oci_bootstrap" {
+  type    = bool
+  default = true
+}
+variable "oci_bootstrap_access_key" {
+  type    = string
+  default = null
+}
+variable "oci_bootstrap_secret_key" {
+  type    = string
+  default = null
+}
+
+variable "oci_node_role_dynamic_group_id" {
+  type    = string
+  default = ""
+}
+
 variable "region_instance_group" {
   type    = string
   default = "grp-mgr-def-wrkr-grp"
