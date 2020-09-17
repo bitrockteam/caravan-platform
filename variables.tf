@@ -54,7 +54,7 @@ variable "gsuite_allowed_redirect_uris" {
 
 variable "oci_bootstrap" {
   type    = bool
-  default = true
+  default = false
 }
 variable "oci_bootstrap_access_key" {
   type    = string
@@ -67,6 +67,9 @@ variable "oci_bootstrap_secret_key" {
 
 variable "oci_node_role_dynamic_group_id" {
   type    = string
+  default = ""
+}
+variable "namespace" {
   default = ""
 }
 
