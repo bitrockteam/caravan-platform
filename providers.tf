@@ -9,5 +9,7 @@ data "vault_generic_secret" "consul_bootstrap_token" {
 
 provider "consul" {
   address = var.consul_endpoint
+  insecure_https = true
+  scheme = "https"
   token   = data.vault_generic_secret.consul_bootstrap_token.data["secretid"]
 }
