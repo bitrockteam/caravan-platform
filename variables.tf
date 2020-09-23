@@ -88,3 +88,6 @@ variable "ssh_timeout" {
   type    = string
   default = "120s"
 }
+variable "ca_cert_file" {}
+variable "cert_file" {}
+variable "key_file" {}
