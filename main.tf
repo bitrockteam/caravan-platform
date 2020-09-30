@@ -1,15 +1,15 @@
 module "vault-policies" {
-  source = "../hashicorp-vault-baseline/modules/default-policies/"
+  source = "git::ssh://git@github.com/bitrockteam/hashicorp-base-vault-baseline//modules/default-policies?ref=master"
 }
 module "consul-backend" {
-  source = "../hashicorp-vault-baseline/modules/vault-consul-config/"
+  source = "git::ssh://git@github.com/bitrockteam/hashicorp-base-vault-baseline//modules/vault-consul-config?ref=master"
 }
 module "authenticate" {
   pre13_depends_on = [
     module.vault-policies,
     module.consul-backend
   ]
-  source                           = "../hashicorp-vault-baseline/modules/vault-authentication/"
+  source                           = "git::ssh://git@github.com/bitrockteam/hashicorp-base-vault-baseline//modules/vault-authentication?ref=master"
   gcp_authenticate                 = var.gcp_authenticate
   gcp_project_id                   = var.gcp_project_id
   gcp_worker_node_service_accounts = var.gcp_authenticate ? data.terraform_remote_state.bootstrap.outputs.worker_nodes_service_accounts : []
@@ -23,5 +23,3 @@ module "authenticate" {
     "${var.vault_endpoint}/ui/vault/auth/gsuite/oidc/callback"
   ]
 }
-
-# "while [ \"$(curl -s 'http://127.0.0.1:8500/v1/status/peers' | jq '. | length')\" != \"3\"  ]; do echo \"Consul: no enough peers\"; sleep 3; done",
