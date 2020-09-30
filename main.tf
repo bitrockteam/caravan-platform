@@ -1,15 +1,15 @@
 module "vault-policies" {
-  source = "../hcpoc-base-vault-baseline/modules/default-policies/"
+  source = "../hashicorp-vault-baseline/modules/default-policies/"
 }
 module "consul-backend" {
-  source = "../hcpoc-base-vault-baseline/modules/vault-consul-config/"
+  source = "../hashicorp-vault-baseline/modules/vault-consul-config/"
 }
 module "authenticate" {
   pre13_depends_on = [
     module.vault-policies,
     module.consul-backend
   ]
-  source                           = "../hcpoc-base-vault-baseline/modules/vault-authentication/"
+  source                           = "../hashicorp-vault-baseline/modules/vault-authentication/"
   gcp_authenticate                 = var.gcp_authenticate
   gcp_project_id                   = var.gcp_project_id
   gcp_worker_node_service_accounts = var.gcp_authenticate ? data.terraform_remote_state.bootstrap.outputs.worker_nodes_service_accounts : []
