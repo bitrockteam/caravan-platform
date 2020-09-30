@@ -10,6 +10,10 @@ variable "vault_skip_tls_verify" {
   type    = bool
   default = false
 }
+variable "consul_insecure_https" {
+  type    = bool
+  default = false
+}
 variable "gcp_authenticate" {
   type    = bool
   default = false
@@ -88,6 +92,3 @@ variable "ssh_timeout" {
   type    = string
   default = "120s"
 }
-variable "ca_cert_file" {}
-variable "cert_file" {}
-variable "key_file" {}
