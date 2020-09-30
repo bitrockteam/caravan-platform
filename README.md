@@ -1,2 +1,2 @@
-# hcpoc-base-platform
+# hashicorp-platform
 Bring the platform online
