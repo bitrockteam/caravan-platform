@@ -23,3 +23,12 @@ module "authenticate" {
     "${var.vault_endpoint}/ui/vault/auth/gsuite/oidc/callback"
   ]
 }
+
+
+module "secrets" {
+  source                  = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/secrets?ref=master"
+  gcp_csi                 = var.gcp_csi
+  gcp_project_id          = var.gcp_project_id
+  gcp_region              = var.gcp_region
+  google_account_file     = var.google_account_file
+}

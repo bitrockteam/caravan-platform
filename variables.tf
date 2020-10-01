@@ -14,6 +14,12 @@ variable "consul_insecure_https" {
   type    = bool
   default = false
 }
+
+variable "cloud" {
+  type = string
+  default = ""
+}
+
 variable "gcp_authenticate" {
   type    = bool
   default = false
@@ -22,9 +28,21 @@ variable "gcp_project_id" {
   type    = string
   default = null
 }
+variable "gcp_region" {
+  type    = string
+  default = null
+}
+variable "google_account_file" {
+  type    = string
+  default = null
+}
 variable "gcp_worker_service_accounts" {
   type    = list(string)
   default = []
+}
+variable "gcp_csi" {
+  type    = bool
+  default = false
 }
 
 variable "gsuite_authenticate" {
