@@ -15,11 +15,6 @@ variable "consul_insecure_https" {
   default = false
 }
 
-variable "cloud" {
-  type = string
-  default = ""
-}
-
 variable "gcp_authenticate" {
   type    = bool
   default = false
