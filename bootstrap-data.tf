@@ -19,7 +19,7 @@ locals {
   bootstrap_backend = "${data.null_data_source.gcs_bootstrap.outputs["backend"]}${data.null_data_source.oci_bootstrap.outputs["backend"]}${data.null_data_source.other_bootstrap.outputs["backend"]}"
   bootstrap_configs = {
     gcs = {
-      bucket = "tfbe-${var.gcp_project_id}"
+      bucket = "tfbe-bootstrap-${var.gcp_project_id}"
       prefix = "terraform/state"
     }
     s3 = {
