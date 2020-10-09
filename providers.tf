@@ -17,3 +17,9 @@ provider "consul" {
   scheme         = "https"
   token          = data.vault_generic_secret.consul_bootstrap_token.data["secretid"]
 }
+
+provider "google" {
+  region      = var.gcp_region
+  project     = var.gcp_project_id
+  credentials = var.google_account_file != null ? file(var.google_account_file) : null
+}
