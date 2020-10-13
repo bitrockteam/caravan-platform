@@ -19,7 +19,7 @@ provider "consul" {
 }
 
 provider "google" {
-  region      = var.gcp_region
+  region      = var.region
   project     = var.gcp_project_id
   credentials = var.google_account_file != null ? file(var.google_account_file) : null
 }
