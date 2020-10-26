@@ -12,7 +12,7 @@ module "authenticate" {
   source                           = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/vault-authentication?ref=master"
   gcp_authenticate                 = var.gcp_authenticate
   gcp_project_id                   = var.gcp_project_id
-  gcp_worker_node_service_accounts = var.gcp_authenticate ? data.terraform_remote_state.bootstrap.outputs.worker_nodes_service_accounts : []
+  gcp_worker_node_service_accounts = var.gcp_authenticate ? data.terraform_remote_state.bootstrap.outputs.worker_node_service_account : []
   gsuite_authenticate              = var.gsuite_authenticate
   gsuite_domain                    = var.gsuite_domain
   gsuite_client_id                 = var.gsuite_client_id
