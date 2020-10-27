@@ -6,10 +6,6 @@ variable "consul_endpoint" {
   type    = string
   default = null
 }
-variable "nomad_endpoint" {
-  type    = string
-  default = null
-}
 variable "vault_skip_tls_verify" {
   type    = bool
   default = false
@@ -107,6 +103,11 @@ variable "ssh_timeout" {
 }
 
 variable "custom_vault_policies_path" {
+  type    = string
+  default = null
+}
+
+variable "ca_cert_file" {
   type    = string
   default = null
 }
