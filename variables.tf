@@ -105,3 +105,8 @@ variable "ssh_timeout" {
   type    = string
   default = "120s"
 }
+
+variable "custom_vault_policies_path" {
+  type    = string
+  default = null
+}
