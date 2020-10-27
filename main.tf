@@ -30,3 +30,17 @@ module "secrets" {
   gcp_csi        = var.gcp_csi
   gcp_project_id = var.gcp_project_id
 }
+
+# Load custom policies
+locals {
+  vault_policies = var.custom_vault_policies_path == null ? {} : {
+    for f in fileset("${var.custom_vault_policies_path}", "*.hcl") : replace(f, ".hcl", "") => f
+  }
+}
+
+resource "vault_policy" "vault_policy" {
+  for_each = local.vault_policies
+
+  name   = each.key
+  policy = file("${var.custom_vault_policies_path}/${each.value}")
+}
