@@ -4,6 +4,9 @@ module "vault-policies" {
 module "consul-backend" {
   source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/vault-consul-config?ref=master"
 }
+module "nomad-policies" {
+  source = "git::ssh://git@github.com/bitrockteam/hashicorp-nomad-baseline//modules/nomad-policies?ref=master"
+}
 module "authenticate" {
   pre13_depends_on = [
     module.vault-policies,

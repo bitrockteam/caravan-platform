@@ -20,6 +20,11 @@ provider "consul" {
   ca_file        = var.ca_cert_file
 }
 
+provider "nomad" {
+  address = var.nomad_endpoint
+  region  = "global"
+}
+
 provider "google" {
   region      = var.region
   project     = var.gcp_project_id
