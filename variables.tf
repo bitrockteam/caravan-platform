@@ -115,3 +115,16 @@ variable "ca_cert_file" {
   type    = string
   default = null
 }
+variable "bootstrap_state_bucket_name_prefix" {
+  type    = string
+  default = "states-bucket"
+}
+variable "bootstrap_state_object_name_prefix" {
+  type    = string
+  default = "infraboot/terraform/state"
+}
+variable "bootstrap_state_s3_endpoint" {
+  // OCI: https://${var.namespace}.compat.objectstorage.${var.region}.oraclecloud.com
+  type    = string
+  default = ""
+}

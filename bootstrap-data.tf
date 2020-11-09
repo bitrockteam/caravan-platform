@@ -19,14 +19,14 @@ locals {
   bootstrap_backend = "${data.null_data_source.gcs_bootstrap.outputs["backend"]}${data.null_data_source.oci_bootstrap.outputs["backend"]}${data.null_data_source.other_bootstrap.outputs["backend"]}"
   bootstrap_configs = {
     gcs = {
-      bucket = "states-bucket-${var.gcp_project_id}"
-      prefix = "infraboot/terraform/state"
+      bucket = "${var.bootstrap_state_bucket_name_prefix}-${var.gcp_project_id}"
+      prefix = "${var.bootstrap_state_object_name_prefix}"
     }
     s3 = {
-      bucket   = "tfbe"
-      key      = "bmed/devops/oci/poc/bootstrap/terraform.tfstate"
+      bucket   = "${var.bootstrap_state_bucket_name_prefix}"
+      key      = "${var.bootstrap_state_object_name_prefix}/terraform.tfstate"
       region   = var.region
-      endpoint = "https://${var.namespace}.compat.objectstorage.${var.region}.oraclecloud.com"
+      endpoint = var.bootstrap_state_s3_endpoint
 
       access_key = var.oci_bootstrap_access_key
       secret_key = var.oci_bootstrap_secret_key
