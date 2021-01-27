@@ -25,6 +25,11 @@ module "authenticate" {
   gsuite_allowed_redirect_uris = [
     "${var.vault_endpoint}/ui/vault/auth/gsuite/oidc/callback"
   ]
+  aws_authenticate = var.aws_authenticate
+  aws_cluster_node_iam_role_arns = var.aws_cluster_node_iam_role_arns
+  aws_worker_node_iam_role_arns = var.aws_worker_node_iam_role_arns
+  aws_region = var.aws_region
+  aws_vpc_id = var.aws_vpc_id
 }
 
 

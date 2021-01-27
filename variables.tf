@@ -25,7 +25,7 @@ variable "gcp_authenticate" {
 }
 variable "gcp_project_id" {
   type    = string
-  default = null
+  default = ""
 }
 variable "google_account_file" {
   type    = string
@@ -128,3 +128,9 @@ variable "bootstrap_state_s3_endpoint" {
   type    = string
   default = ""
 }
+
+variable "aws_authenticate" {}
+variable "aws_cluster_node_iam_role_arns" {}
+variable "aws_worker_node_iam_role_arns" {}
+variable "aws_region" {}
+variable "aws_vpc_id" {}
