@@ -24,7 +24,7 @@ locals {
     }
     s3 = {
       bucket   = "${var.bootstrap_state_bucket_name_prefix}"
-      key      = "${var.bootstrap_state_object_name_prefix}/"
+      key      = "${var.bootstrap_state_object_name_prefix}/terraform.tfstate"
       region   = var.region
       endpoint = var.bootstrap_state_s3_endpoint
 
