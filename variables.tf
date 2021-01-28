@@ -142,6 +142,14 @@ variable "aws_vpc_id" {
   type    = string
   default = ""
 }
+variable "aws_shared_credentials_file" {
+  type    = string
+  default = null
+}
+variable "aws_profile" {
+  type    = string
+  default = null
+}
 
 // OCI auth provider
 variable "oci_home_tenancy_id" {
