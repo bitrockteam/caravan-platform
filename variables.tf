@@ -1,3 +1,4 @@
+// Common args
 variable "vault_endpoint" {
   type    = string
   default = null
@@ -18,28 +19,83 @@ variable "consul_insecure_https" {
   type    = bool
   default = false
 }
-
-variable "gcp_authenticate" {
-  type    = bool
-  default = false
+variable "bootstrap_state_backend_provider" {
+  type    = string
+  default = ""
+  validation {
+    condition     = contains(toset(["gcp", "oci", "aws", ""]), var.bootstrap_state_backend_provider)
+    error_message = "Unsupported auth_provider."
+  }
+  description = "Use an external state backend for inferencing configuration variables"
 }
+variable "auth_providers" {
+  type        = list(string)
+  default     = []
+  description = "Enable auth providers: aws, gcp, gsuite, oci, approle"
+}
+variable "control_plane_role_name" {
+  type    = string
+  default = "control-plane"
+}
+variable "worker_plane_role_name" {
+  type    = string
+  default = "worker-plane"
+}
+
+// Common state config
+variable "bootstrap_state_bucket_name_prefix" {
+  type    = string
+  default = "states-bucket"
+}
+variable "bootstrap_state_object_name_prefix" {
+  type    = string
+  default = "infraboot/terraform/state"
+}
+
+// GCP state config
 variable "gcp_project_id" {
   type    = string
   default = ""
 }
-variable "google_account_file" {
+variable "gcp_region" {
+  type    = string
+  default = ""
+}
+
+// S3 state config
+variable "s3_bootstrap_access_key" {
   type    = string
   default = null
 }
-variable "gcp_worker_service_accounts" {
-  type    = list(string)
-  default = []
+variable "s3_bootstrap_secret_key" {
+  type    = string
+  default = null
 }
+variable "s3_bootstrap_state_endpoint" {
+  // OCI: https://${var.namespace}.compat.objectstorage.${var.region}.oraclecloud.com
+  type    = string
+  default = null
+}
+variable "s3_bootstrap_region" {
+  type    = string
+  default = null
+}
+
+// GCP auth provider
 variable "gcp_csi" {
   type    = bool
   default = false
 }
+variable "gcp_control_plane_service_accounts" {
+  type    = list(string)
+  default = []
+}
+variable "gcp_worker_plane_service_accounts" {
+  type    = list(string)
+  default = []
+}
 
+// GSUITE auth provider
 variable "gsuite_authenticate" {
   type    = bool
   default = false
@@ -69,68 +125,60 @@ variable "gsuite_allowed_redirect_uris" {
   default = []
 }
 
-variable "oci_bootstrap" {
-  type    = bool
-  default = false
+// AWS auth provider
+variable "aws_cluster_node_iam_role_arns" {
+  type    = list(string)
+  default = []
 }
-variable "oci_bootstrap_access_key" {
-  type    = string
-  default = null
+variable "aws_worker_node_iam_role_arns" {
+  type    = list(string)
+  default = []
 }
-variable "oci_bootstrap_secret_key" {
-  type    = string
-  default = null
-}
-
-variable "oci_node_role_dynamic_group_id" {
+variable "aws_region" {
   type    = string
   default = ""
 }
-variable "namespace" {
+variable "aws_vpc_id" {
+  type    = string
   default = ""
 }
 
-variable "region_instance_group" {
+// OCI auth provider
+variable "oci_home_tenancy_id" {
   type    = string
-  default = "grp-mgr-def-wrkr-grp"
+  default = ""
 }
-variable "region" {
-  type = string
-}
-variable "ssh_user" {
+variable "oci_role_name" {
   type    = string
-  default = "centos"
+  default = ""
 }
-variable "ssh_timeout" {
+variable "oci_dynamic_group_ocid" {
   type    = string
-  default = "120s"
+  default = ""
 }
 
+// APPROLE auth
+variable "approle_token_policies" {
+  type    = list(string)
+  default = []
+}
+variable "approle_role_name" {
+  type    = string
+  default = ""
+}
+
+// Extra
 variable "custom_vault_policies_path" {
   type    = string
   default = null
 }
-
 variable "ca_cert_file" {
   type    = string
   default = null
 }
-variable "bootstrap_state_bucket_name_prefix" {
-  type    = string
-  default = "states-bucket"
-}
-variable "bootstrap_state_object_name_prefix" {
-  type    = string
-  default = "infraboot/terraform/state"
-}
-variable "bootstrap_state_s3_endpoint" {
-  // OCI: https://${var.namespace}.compat.objectstorage.${var.region}.oraclecloud.com
-  type    = string
-  default = ""
-}
 
-variable "aws_authenticate" {}
-variable "aws_cluster_node_iam_role_arns" {}
-variable "aws_worker_node_iam_role_arns" {}
-variable "aws_region" {}
-variable "aws_vpc_id" {}
+// Credentials
+variable "google_account_file" {
+  type    = string
+  default = null
+}

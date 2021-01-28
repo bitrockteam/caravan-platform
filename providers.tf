@@ -27,7 +27,7 @@ provider "nomad" {
 }
 
 provider "google" {
-  region      = var.region
+  region      = var.gcp_region
   project     = var.gcp_project_id
   credentials = var.google_account_file != null ? file(var.google_account_file) : null
 }
