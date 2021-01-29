@@ -1,13 +1,3 @@
-module "vault-policies" {
-  source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/default-policies?ref=feature/refactoring"
-}
-module "consul-backend" {
-  source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/vault-consul-config?ref=master"
-}
-module "nomad-policies" {
-  source = "git::ssh://git@github.com/bitrockteam/hashicorp-nomad-baseline//modules/nomad-policies?ref=master"
-}
-
 locals {
   has_remote_state = var.bootstrap_state_backend_provider != ""
   is_gcp           = var.bootstrap_state_backend_provider == "gcp"
@@ -15,6 +5,16 @@ locals {
   is_oci           = var.bootstrap_state_backend_provider == "oci"
 }
 
+module "vault-policies" {
+  source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/default-policies?ref=feature/refactoring"
+  control_plane_role_name = local.has_remote_state ? data.terraform_remote_state.bootstrap.outputs.control_plane_role_name : var.control_plane_role_name
+}
+module "consul-backend" {
+  source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/vault-consul-config?ref=master"
+}
+module "nomad-policies" {
+  source = "git::ssh://git@github.com/bitrockteam/hashicorp-nomad-baseline//modules/nomad-policies?ref=master"
+}
 module "authenticate" {
   depends_on = [
     module.vault-policies,
