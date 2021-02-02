@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 0.12.28"
+  required_version = "~> 0.13.0"
 }
 
 provider "vault" {
@@ -27,7 +27,13 @@ provider "nomad" {
 }
 
 provider "google" {
-  region      = var.region
+  region      = var.gcp_region
   project     = var.gcp_project_id
   credentials = var.google_account_file != null ? file(var.google_account_file) : null
+}
+
+provider "aws" {
+  region                  = var.aws_region
+  shared_credentials_file = var.aws_shared_credentials_file
+  profile                 = var.aws_profile
 }
