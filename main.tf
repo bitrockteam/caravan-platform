@@ -6,21 +6,21 @@ locals {
 }
 
 module "vault-policies" {
-  source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/default-policies?ref=feature/refactoring"
+  source = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/default-policies?ref=master"
   control_plane_role_name = local.has_remote_state ? data.terraform_remote_state.bootstrap.outputs.control_plane_role_name : var.control_plane_role_name
 }
 module "consul-backend" {
-  source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/vault-consul-config?ref=master"
+  source = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=master"
 }
 module "nomad-policies" {
-  source = "git::ssh://git@github.com/bitrockteam/hashicorp-nomad-baseline//modules/nomad-policies?ref=master"
+  source = "git::ssh://git@github.com/bitrockteam/caravan-nomad//modules/nomad-policies?ref=master"
 }
 module "authenticate" {
   depends_on = [
     module.vault-policies,
     module.consul-backend
   ]
-  source = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/vault-authentication?ref=feature/refactoring"
+  source = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=master"
 
   vault_endpoint                    = var.vault_endpoint
   auth_providers                    = var.auth_providers
@@ -56,7 +56,7 @@ module "authenticate" {
 }
 
 module "secrets" {
-  source         = "git::ssh://git@github.com/bitrockteam/hashicorp-vault-baseline//modules/secrets?ref=master"
+  source         = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/secrets?ref=master"
   gcp_csi        = var.gcp_csi
   gcp_project_id = var.gcp_project_id
 }
