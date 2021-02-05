@@ -9,6 +9,7 @@ locals {
     gcs = {
       bucket = "${var.bootstrap_state_bucket_name_prefix}-${var.gcp_project_id}"
       prefix = var.bootstrap_state_object_name_prefix
+      credentials = var.google_account_file
     }
     s3 = {
       bucket   = var.bootstrap_state_bucket_name_prefix
