@@ -7,8 +7,8 @@ locals {
   bootstrap_backend = contains(keys(local.auth_provider_map), var.bootstrap_state_backend_provider) ? local.auth_provider_map[var.bootstrap_state_backend_provider] : ""
   bootstrap_configs = {
     gcs = {
-      bucket = "${var.bootstrap_state_bucket_name_prefix}-${var.gcp_project_id}"
-      prefix = var.bootstrap_state_object_name_prefix
+      bucket      = "${var.bootstrap_state_bucket_name_prefix}-${var.gcp_project_id}"
+      prefix      = var.bootstrap_state_object_name_prefix
       credentials = var.google_account_file
     }
     s3 = {
