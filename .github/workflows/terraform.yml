@@ -40,7 +40,7 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: terraform fmt -check -recursive
 
       - name: Terraform Init
         id: init
@@ -49,3 +49,10 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate
+
+      - name: Bump version and push tag
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
