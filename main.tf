@@ -6,7 +6,7 @@ locals {
 }
 
 module "vault-policies" {
-  source = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/default-policies?ref=master"
+  source                  = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/default-policies?ref=master"
   control_plane_role_name = local.has_remote_state ? data.terraform_remote_state.bootstrap.outputs.control_plane_role_name : var.control_plane_role_name
 }
 module "consul-backend" {
