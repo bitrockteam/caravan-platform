@@ -23,3 +23,11 @@ Assumption:
   - home_tenancy_id
   - role_name
   - dynamic_group_ocid
+
+- AZURE infra state should output:
+  - tenant_id: Azure AD tenant id
+  - subscription_id: Azure subscription id
+  - resource_group_name: resource group of the instances
+  - vault_resource_name: AD resource used for generating tokens, e.g. https://management.azure.com
+  - control_plane_service_principal_ids: list of service principal ids for control plane instances
+  - worker_plane_service_principal_ids: list of service principal ids for worker plane instances
