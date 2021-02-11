@@ -23,7 +23,7 @@ variable "bootstrap_state_backend_provider" {
   type    = string
   default = ""
   validation {
-    condition     = contains(toset(["gcp", "oci", "aws", ""]), var.bootstrap_state_backend_provider)
+    condition     = contains(toset(["gcp", "oci", "aws", "azure", ""]), var.bootstrap_state_backend_provider)
     error_message = "Unsupported auth_provider."
   }
   description = "Use an external state backend for inferencing configuration variables"
@@ -189,4 +189,62 @@ variable "ca_cert_file" {
 variable "google_account_file" {
   type    = string
   default = null
+}
+
+// Azure
+variable "azure_bootstrap_resource_group_name" {
+  type    = string
+  default = ""
+}
+variable "azure_bootstrap_storage_account_name" {
+  type    = string
+  default = ""
+}
+variable "azure_bootstrap_client_id" {
+  type    = string
+  default = ""
+}
+variable "azure_bootstrap_client_secret" {
+  type    = string
+  default = ""
+}
+variable "azure_bootstrap_tenant_id" {
+  type    = string
+  default = ""
+}
+variable "azure_bootstrap_subscription_id" {
+  type    = string
+  default = ""
+}
+variable "azure_control_plane_service_principal_ids" {
+  type    = list(string)
+  default = []
+}
+variable "azure_worker_plane_service_principal_ids" {
+  type    = list(string)
+  default = []
+}
+variable "azure_resource_groups" {
+  type    = list(string)
+  default = []
+}
+variable "azure_subscription_ids" {
+  type    = list(string)
+  default = []
+}
+variable "azure_tenant_id" {
+  type    = string
+  default = ""
+}
+variable "azure_vault_client_id" {
+  type    = string
+  default = ""
+}
+variable "azure_vault_client_secret" {
+  type    = string
+  default = ""
+}
+variable "azure_vault_resource_name" {
+  type    = string
+  default = ""
 }

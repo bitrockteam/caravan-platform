@@ -3,6 +3,7 @@ locals {
     "oci" : "s3"
     "aws" : "s3"
     "gcp" : "gcs"
+    "azure" : "azure"
   }
   bootstrap_backend = contains(keys(local.auth_provider_map), var.bootstrap_state_backend_provider) ? local.auth_provider_map[var.bootstrap_state_backend_provider] : ""
   bootstrap_configs = {
@@ -24,6 +25,16 @@ locals {
       skip_credentials_validation = true
       skip_metadata_api_check     = true
       force_path_style            = true
+    }
+    azure = {
+      resource_group_name  = var.azure_bootstrap_resource_group_name
+      storage_account_name = var.azure_bootstrap_storage_account_name
+      container_name       = "tfstate"
+      key                  = "${var.bootstrap_state_object_name_prefix}/terraform.tfstate"
+      client_id            = var.azure_bootstrap_client_id
+      client_secret        = var.azure_bootstrap_client_secret
+      tenant_id            = var.azure_bootstrap_tenant_id
+      subscription_id      = var.azure_bootstrap_subscription_id
     }
     other = {}
   }
