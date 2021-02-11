@@ -56,13 +56,11 @@ module "authenticate" {
   aws_vpc_id                     = local.is_aws ? data.terraform_remote_state.bootstrap.outputs.vpc_id : var.aws_vpc_id
 
   azure_tenant_id                           = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.tenant_id : var.azure_tenant_id
-  azure_resource                            = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.vault_resource_name[0] : var.azure_vault_resource_name
+  azure_resource                            = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.vault_resource_name : var.azure_vault_resource_name
   azure_control_plane_service_principal_ids = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.control_plane_service_principal_ids : var.azure_control_plane_service_principal_ids
   azure_worker_plane_service_principal_ids  = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.worker_plane_service_principal_ids : var.azure_worker_plane_service_principal_ids
   azure_resource_groups                     = local.is_azure ? [data.terraform_remote_state.bootstrap.outputs.resource_group_name] : var.azure_resource_groups
   azure_subscription_ids                    = local.is_azure ? [data.terraform_remote_state.bootstrap.outputs.subscription_id] : var.azure_subscription_ids
-  azure_client_id                           = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.vault_client_id : var.azure_vault_client_id
-  azure_client_secret                       = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.vault_client_secret : var.azure_vault_client_secret
 }
 
 module "secrets" {
