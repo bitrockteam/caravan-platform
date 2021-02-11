@@ -236,14 +236,6 @@ variable "azure_tenant_id" {
   type    = string
   default = ""
 }
-variable "azure_vault_client_id" {
-  type    = string
-  default = ""
-}
-variable "azure_vault_client_secret" {
-  type    = string
-  default = ""
-}
 variable "azure_vault_resource_name" {
   type    = string
   default = ""
