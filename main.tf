@@ -64,9 +64,15 @@ module "authenticate" {
 }
 
 module "secrets" {
-  source         = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/secrets?ref=main"
-  gcp_csi        = var.gcp_csi
-  gcp_project_id = var.gcp_project_id
+  source                = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/secrets?ref=main"
+  gcp_csi               = var.gcp_csi
+  gcp_project_id        = var.gcp_project_id
+  azure_csi             = var.azure_csi
+  azure_resource_group  = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.resource_group_name : ""
+  azure_subscription_id = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.subscription_id : ""
+  azure_tenant_id       = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.tenant_id : ""
+  azure_client_id       = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.vault_client_id : ""
+  azure_client_secret   = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.vault_client_secret : ""
 }
 
 # Load custom policies

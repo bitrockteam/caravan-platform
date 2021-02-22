@@ -31,7 +31,8 @@ Assumption:
   - vault_resource_name: AD resource used for generating tokens, e.g. https://management.azure.com
   - control_plane_service_principal_ids: list of service principal ids for control plane instances
   - worker_plane_service_principal_ids: list of service principal ids for worker plane instances
-
+  - vault_client_id: the AD application id for Vault Azure dynamic secret  
+  - vault_client_secret: the AD application secret for Vault Azure dynamic secret
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -69,6 +70,7 @@ Assumption:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| azure\_csi | Azure | `bool` | n/a | yes |
 | approle\_role\_name | n/a | `string` | `""` | no |
 | approle\_token\_policies | APPROLE auth | `list(string)` | `[]` | no |
 | auth\_providers | Enable auth providers: aws, gcp, gsuite, oci, approle | `list(string)` | `[]` | no |
@@ -80,7 +82,7 @@ Assumption:
 | aws\_worker\_node\_iam\_role\_arns | n/a | `list(string)` | `[]` | no |
 | azure\_bootstrap\_client\_id | n/a | `string` | `""` | no |
 | azure\_bootstrap\_client\_secret | n/a | `string` | `""` | no |
-| azure\_bootstrap\_resource\_group\_name | Azure | `string` | `""` | no |
+| azure\_bootstrap\_resource\_group\_name | n/a | `string` | `""` | no |
 | azure\_bootstrap\_storage\_account\_name | n/a | `string` | `""` | no |
 | azure\_bootstrap\_subscription\_id | n/a | `string` | `""` | no |
 | azure\_bootstrap\_tenant\_id | n/a | `string` | `""` | no |
