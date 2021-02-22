@@ -31,7 +31,8 @@ Assumption:
   - vault_resource_name: AD resource used for generating tokens, e.g. https://management.azure.com
   - control_plane_service_principal_ids: list of service principal ids for control plane instances
   - worker_plane_service_principal_ids: list of service principal ids for worker plane instances
-
+  - vault_client_id: the AD application id for Vault Azure dynamic secret  
+  - vault_client_secret: the AD application secret for Vault Azure dynamic secret
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
