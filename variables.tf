@@ -193,7 +193,8 @@ variable "google_account_file" {
 
 // Azure
 variable "azure_csi" {
-  type = bool
+  type    = bool
+  default = false
 }
 variable "azure_bootstrap_resource_group_name" {
   type    = string
