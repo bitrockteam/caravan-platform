@@ -39,7 +39,7 @@ Assumption:
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.13.0 |
+| terraform | ~> 0.14 |
 
 ## Providers
 
@@ -70,7 +70,6 @@ Assumption:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| azure\_csi | Azure | `bool` | n/a | yes |
 | approle\_role\_name | n/a | `string` | `""` | no |
 | approle\_token\_policies | APPROLE auth | `list(string)` | `[]` | no |
 | auth\_providers | Enable auth providers: aws, gcp, gsuite, oci, approle | `list(string)` | `[]` | no |
@@ -87,6 +86,7 @@ Assumption:
 | azure\_bootstrap\_subscription\_id | n/a | `string` | `""` | no |
 | azure\_bootstrap\_tenant\_id | n/a | `string` | `""` | no |
 | azure\_control\_plane\_service\_principal\_ids | n/a | `list(string)` | `[]` | no |
+| azure\_csi | Azure | `bool` | `false` | no |
 | azure\_resource\_groups | n/a | `list(string)` | `[]` | no |
 | azure\_subscription\_ids | n/a | `list(string)` | `[]` | no |
 | azure\_tenant\_id | n/a | `string` | `""` | no |
