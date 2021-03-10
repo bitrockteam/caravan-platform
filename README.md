@@ -39,7 +39,7 @@ Assumption:
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.14 |
+| terraform | ~> 0.14.7 |
 
 ## Providers
 
