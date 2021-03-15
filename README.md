@@ -52,11 +52,11 @@ Assumption:
 
 | Name | Source | Version |
 |------|--------|---------|
-| authenticate | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=main |  |
-| consul-backend | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=main |  |
-| nomad-policies | git::ssh://git@github.com/bitrockteam/caravan-nomad//modules/nomad-policies?ref=main |  |
-| secrets | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/secrets?ref=main |  |
-| vault-policies | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/default-policies?ref=main |  |
+| authenticate | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=refs/tags/v0.3.0 |  |
+| consul-backend | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.0 |  |
+| nomad-policies | git::ssh://git@github.com/bitrockteam/caravan-nomad//modules/nomad-policies?ref=refs/tags/v0.1.5 |  |
+| secrets | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.0 |  |
+| vault-policies | git::ssh://git@github.com/bitrockteam/caravan-vault//modules/default-policies?ref=refs/tags/v0.3.0 |  |
 
 ## Resources
 
