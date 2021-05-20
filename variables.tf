@@ -64,12 +64,14 @@ variable "gcp_region" {
 
 // S3 state config
 variable "s3_bootstrap_access_key" {
-  type    = string
-  default = null
+  type      = string
+  default   = null
+  sensitive = true
 }
 variable "s3_bootstrap_secret_key" {
-  type    = string
-  default = null
+  type      = string
+  default   = null
+  sensitive = true
 }
 variable "s3_bootstrap_state_endpoint" {
   // OCI: https://${var.namespace}.compat.objectstorage.${var.region}.oraclecloud.com
@@ -105,12 +107,14 @@ variable "gsuite_domain" {
   default = null
 }
 variable "gsuite_client_id" {
-  type    = string
-  default = null
+  type      = string
+  default   = null
+  sensitive = true
 }
 variable "gsuite_client_secret" {
-  type    = string
-  default = null
+  type      = string
+  default   = null
+  sensitive = true
 }
 variable "gsuite_default_role" {
   type    = string
@@ -205,12 +209,14 @@ variable "azure_bootstrap_storage_account_name" {
   default = ""
 }
 variable "azure_bootstrap_client_id" {
-  type    = string
-  default = ""
+  type      = string
+  default   = ""
+  sensitive = true
 }
 variable "azure_bootstrap_client_secret" {
-  type    = string
-  default = ""
+  type      = string
+  default   = ""
+  sensitive = true
 }
 variable "azure_bootstrap_tenant_id" {
   type    = string
