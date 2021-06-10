@@ -7,21 +7,21 @@ locals {
 }
 
 module "vault-policies" {
-  source                  = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/default-policies?ref=refs/tags/v0.3.0"
+  source                  = "git::https://github.com/bitrockteam/caravan-vault//modules/default-policies?ref=refs/tags/v0.3.0"
   control_plane_role_name = local.has_remote_state ? data.terraform_remote_state.bootstrap.outputs.control_plane_role_name : var.control_plane_role_name
 }
 module "consul-backend" {
-  source = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.0"
+  source = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.0"
 }
 module "nomad-policies" {
-  source = "git::ssh://git@github.com/bitrockteam/caravan-nomad//modules/nomad-policies?ref=refs/tags/v0.1.5"
+  source = "git::https://github.com/bitrockteam/caravan-nomad//modules/nomad-policies?ref=refs/tags/v0.1.5"
 }
 module "authenticate" {
   depends_on = [
     module.vault-policies,
     module.consul-backend
   ]
-  source = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=refs/tags/v0.3.0"
+  source = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=refs/tags/v0.3.0"
 
   vault_endpoint                    = var.vault_endpoint
   auth_providers                    = var.auth_providers
@@ -64,7 +64,7 @@ module "authenticate" {
 }
 
 module "secrets" {
-  source                = "git::ssh://git@github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.0"
+  source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.0"
   gcp_csi               = var.gcp_csi
   gcp_project_id        = var.gcp_project_id
   azure_csi             = var.azure_csi
