@@ -21,6 +21,9 @@ locals {
       access_key = var.s3_bootstrap_access_key
       secret_key = var.s3_bootstrap_secret_key
 
+      shared_credentials_file = var.aws_shared_credentials_file
+      profile                 = var.aws_profile
+
       skip_region_validation      = true
       skip_credentials_validation = true
       skip_metadata_api_check     = true
