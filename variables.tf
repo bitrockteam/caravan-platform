@@ -19,6 +19,10 @@ variable "consul_insecure_https" {
   type    = bool
   default = false
 }
+variable "consul_internal_address" {
+  type    = string
+  default = "127.0.0.1:8500"
+}
 variable "bootstrap_state_backend_provider" {
   type    = string
   default = ""
