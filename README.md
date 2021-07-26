@@ -52,11 +52,11 @@ Assumption:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_authenticate"></a> [authenticate](#module\_authenticate) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication | refs/tags/v0.3.6 |
-| <a name="module_consul-backend"></a> [consul-backend](#module\_consul-backend) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config | refs/tags/v0.3.6 |
+| <a name="module_authenticate"></a> [authenticate](#module\_authenticate) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication | refs/tags/v0.3.16 |
+| <a name="module_consul-backend"></a> [consul-backend](#module\_consul-backend) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config | refs/tags/v0.3.16 |
 | <a name="module_nomad-policies"></a> [nomad-policies](#module\_nomad-policies) | git::https://github.com/bitrockteam/caravan-nomad//modules/nomad-policies | refs/tags/v0.1.5 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/bitrockteam/caravan-vault//modules/secrets | refs/tags/v0.3.6 |
-| <a name="module_vault-policies"></a> [vault-policies](#module\_vault-policies) | git::https://github.com/bitrockteam/caravan-vault//modules/default-policies | refs/tags/v0.3.6 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/bitrockteam/caravan-vault//modules/secrets | refs/tags/v0.3.16 |
+| <a name="module_vault-policies"></a> [vault-policies](#module\_vault-policies) | git::https://github.com/bitrockteam/caravan-vault//modules/default-policies | refs/tags/v0.3.16 |
 
 ## Resources
 
@@ -98,6 +98,7 @@ Assumption:
 | <a name="input_ca_cert_file"></a> [ca\_cert\_file](#input\_ca\_cert\_file) | n/a | `string` | `null` | no |
 | <a name="input_consul_endpoint"></a> [consul\_endpoint](#input\_consul\_endpoint) | n/a | `string` | `null` | no |
 | <a name="input_consul_insecure_https"></a> [consul\_insecure\_https](#input\_consul\_insecure\_https) | n/a | `bool` | `false` | no |
+| <a name="input_consul_internal_address"></a> [consul\_internal\_address](#input\_consul\_internal\_address) | n/a | `string` | `"127.0.0.1:8500"` | no |
 | <a name="input_control_plane_role_name"></a> [control\_plane\_role\_name](#input\_control\_plane\_role\_name) | n/a | `string` | `"control-plane"` | no |
 | <a name="input_custom_vault_policies_path"></a> [custom\_vault\_policies\_path](#input\_custom\_vault\_policies\_path) | Extra | `string` | `null` | no |
 | <a name="input_gcp_control_plane_service_accounts"></a> [gcp\_control\_plane\_service\_accounts](#input\_gcp\_control\_plane\_service\_accounts) | n/a | `list(string)` | `[]` | no |

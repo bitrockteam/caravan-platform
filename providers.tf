@@ -25,15 +25,3 @@ provider "nomad" {
   region  = "global"
   ca_file = var.ca_cert_file
 }
-
-provider "google" {
-  region      = var.gcp_region
-  project     = var.gcp_project_id
-  credentials = var.google_account_file != null ? file(var.google_account_file) : null
-}
-
-provider "aws" {
-  region                  = var.aws_region
-  shared_credentials_file = var.aws_shared_credentials_file
-  profile                 = var.aws_profile
-}
