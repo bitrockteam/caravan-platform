@@ -52,11 +52,11 @@ Assumption:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_authenticate"></a> [authenticate](#module\_authenticate) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication | remove-gcp-provider-deps |
-| <a name="module_consul-backend"></a> [consul-backend](#module\_consul-backend) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config | remove-gcp-provider-deps |
+| <a name="module_authenticate"></a> [authenticate](#module\_authenticate) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication | refs/tags/v0.3.16 |
+| <a name="module_consul-backend"></a> [consul-backend](#module\_consul-backend) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config | refs/tags/v0.3.16 |
 | <a name="module_nomad-policies"></a> [nomad-policies](#module\_nomad-policies) | git::https://github.com/bitrockteam/caravan-nomad//modules/nomad-policies | refs/tags/v0.1.5 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/bitrockteam/caravan-vault//modules/secrets | remove-gcp-provider-deps |
-| <a name="module_vault-policies"></a> [vault-policies](#module\_vault-policies) | git::https://github.com/bitrockteam/caravan-vault//modules/default-policies | remove-gcp-provider-deps |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/bitrockteam/caravan-vault//modules/secrets | refs/tags/v0.3.16 |
+| <a name="module_vault-policies"></a> [vault-policies](#module\_vault-policies) | git::https://github.com/bitrockteam/caravan-vault//modules/default-policies | refs/tags/v0.3.16 |
 
 ## Resources
 

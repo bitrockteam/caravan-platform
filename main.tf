@@ -7,11 +7,11 @@ locals {
 }
 
 module "vault-policies" {
-  source                  = "git::https://github.com/bitrockteam/caravan-vault//modules/default-policies?ref=remove-gcp-provider-deps"
+  source                  = "git::https://github.com/bitrockteam/caravan-vault//modules/default-policies?ref=refs/tags/v0.3.16"
   control_plane_role_name = local.has_remote_state ? data.terraform_remote_state.bootstrap.outputs.control_plane_role_name : var.control_plane_role_name
 }
 module "consul-backend" {
-  source         = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=remove-gcp-provider-deps"
+  source         = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.16"
   consul_address = var.consul_internal_address
 }
 module "nomad-policies" {
@@ -22,7 +22,7 @@ module "authenticate" {
     module.vault-policies,
     module.consul-backend
   ]
-  source = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=remove-gcp-provider-deps"
+  source = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=refs/tags/v0.3.16"
 
   vault_endpoint                    = var.vault_endpoint
   auth_providers                    = var.auth_providers
@@ -65,7 +65,7 @@ module "authenticate" {
 }
 
 module "secrets" {
-  source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=remove-gcp-provider-deps"
+  source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.16"
   gcp_csi               = var.gcp_csi
   gcp_pd_csi_sa_key     = local.is_gcp ? data.terraform_remote_state.bootstrap.outputs.csi_sa_key : ""
   gcp_project_id        = var.gcp_project_id
