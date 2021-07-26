@@ -67,6 +67,7 @@ module "authenticate" {
 module "secrets" {
   source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=remove-gcp-provider-deps"
   gcp_csi               = var.gcp_csi
+  gcp_pd_csi_sa_key     = local.is_gcp ? data.terraform_remote_state.bootstrap.outputs.csi_sa_key : ""
   gcp_project_id        = var.gcp_project_id
   azure_csi             = var.azure_csi
   azure_resource_group  = local.is_azure ? data.terraform_remote_state.bootstrap.outputs.resource_group_name : ""
