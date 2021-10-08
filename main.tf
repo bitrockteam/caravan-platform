@@ -15,6 +15,7 @@ module "consul-backend" {
   consul_address = var.consul_internal_address
 }
 module "nomad-policies" {
+  count  = var.enable_nomad ? 1 : 0
   source = "git::https://github.com/bitrockteam/caravan-nomad//modules/nomad-policies?ref=refs/tags/v0.1.5"
 }
 module "authenticate" {
@@ -65,6 +66,7 @@ module "authenticate" {
 }
 
 module "secrets" {
+  count                 = var.enable_nomad ? 1 : 0
   source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.16"
   gcp_csi               = var.gcp_csi
   gcp_pd_csi_sa_key     = local.is_gcp ? data.terraform_remote_state.bootstrap.outputs.csi_sa_key : ""

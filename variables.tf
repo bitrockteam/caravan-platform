@@ -7,6 +7,11 @@ variable "consul_endpoint" {
   type    = string
   default = null
 }
+variable "enable_nomad" {
+  type        = bool
+  default     = true
+  description = "Enables and setup Nomad cluster"
+}
 variable "nomad_endpoint" {
   type    = string
   default = null
