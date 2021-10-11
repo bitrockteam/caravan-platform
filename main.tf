@@ -7,8 +7,9 @@ locals {
 }
 
 module "vault-policies" {
-  source                  = "git::https://github.com/bitrockteam/caravan-vault//modules/default-policies?ref=refs/tags/v0.3.16"
+  source                  = "git::https://github.com/bitrockteam/caravan-vault//modules/default-policies?ref=feat/pluggable_nomad"
   control_plane_role_name = local.has_remote_state ? data.terraform_remote_state.bootstrap.outputs.control_plane_role_name : var.control_plane_role_name
+  enable_nomad            = var.enable_nomad
 }
 module "consul-backend" {
   source         = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.16"
