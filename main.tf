@@ -12,8 +12,9 @@ module "vault-policies" {
   enable_nomad            = var.enable_nomad
 }
 module "consul-backend" {
-  source         = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.16"
+  source         = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=feat/pluggable_nomad"
   consul_address = var.consul_internal_address
+  enable_nomad   = var.enable_nomad
 }
 module "nomad-policies" {
   count  = var.enable_nomad ? 1 : 0
