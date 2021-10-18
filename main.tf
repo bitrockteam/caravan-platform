@@ -7,14 +7,17 @@ locals {
 }
 
 module "vault-policies" {
-  source                  = "git::https://github.com/bitrockteam/caravan-vault//modules/default-policies?ref=refs/tags/v0.3.16"
+  source                  = "git::https://github.com/bitrockteam/caravan-vault//modules/default-policies?ref=refs/tags/v0.3.18"
   control_plane_role_name = local.has_remote_state ? data.terraform_remote_state.bootstrap.outputs.control_plane_role_name : var.control_plane_role_name
+  enable_nomad            = var.enable_nomad
 }
 module "consul-backend" {
-  source         = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.16"
+  source         = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config?ref=refs/tags/v0.3.18"
   consul_address = var.consul_internal_address
+  enable_nomad   = var.enable_nomad
 }
 module "nomad-policies" {
+  count  = var.enable_nomad ? 1 : 0
   source = "git::https://github.com/bitrockteam/caravan-nomad//modules/nomad-policies?ref=refs/tags/v0.1.5"
 }
 module "authenticate" {
@@ -22,7 +25,7 @@ module "authenticate" {
     module.vault-policies,
     module.consul-backend
   ]
-  source = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=refs/tags/v0.3.16"
+  source = "git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication?ref=refs/tags/v0.3.18"
 
   vault_endpoint                    = var.vault_endpoint
   auth_providers                    = var.auth_providers
@@ -65,7 +68,8 @@ module "authenticate" {
 }
 
 module "secrets" {
-  source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.16"
+  count                 = var.enable_nomad ? 1 : 0
+  source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.18"
   gcp_csi               = var.gcp_csi
   gcp_pd_csi_sa_key     = local.is_gcp ? data.terraform_remote_state.bootstrap.outputs.csi_sa_key : ""
   gcp_project_id        = var.gcp_project_id
