@@ -51,6 +51,10 @@ variable "worker_plane_role_name" {
   default = "worker-plane"
 }
 
+variable "bootstrap_state_bucket_name" {
+  type    = string
+  default = ""
+}
 // Common state config
 variable "bootstrap_state_bucket_name_prefix" {
   type    = string
