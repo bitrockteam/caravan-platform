@@ -70,7 +70,7 @@ module "authenticate" {
 
 module "secrets" {
   count                 = var.enable_nomad ? 1 : 0
-  source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.23"
+  source                = "git::https://github.com/bitrockteam/caravan-vault//modules/secrets?ref=refs/tags/v0.3.25"
   gcp_csi               = var.gcp_csi
   gcp_pd_csi_sa_key     = local.is_gcp ? data.terraform_remote_state.bootstrap.outputs.csi_sa_key : ""
   gcp_project_id        = var.gcp_project_id
