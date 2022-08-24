@@ -39,24 +39,24 @@ Assumption:
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 0.15.4 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
-| <a name="provider_vault"></a> [vault](#provider\_vault) | 2.20.0 |
+| <a name="provider_vault"></a> [vault](#provider\_vault) | 2.24.1 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_authenticate"></a> [authenticate](#module\_authenticate) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication | refs/tags/v0.3.16 |
-| <a name="module_consul-backend"></a> [consul-backend](#module\_consul-backend) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config | refs/tags/v0.3.16 |
+| <a name="module_authenticate"></a> [authenticate](#module\_authenticate) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-authentication | refs/tags/v0.3.23 |
+| <a name="module_consul-backend"></a> [consul-backend](#module\_consul-backend) | git::https://github.com/bitrockteam/caravan-vault//modules/vault-consul-config | refs/tags/v0.3.23 |
 | <a name="module_nomad-policies"></a> [nomad-policies](#module\_nomad-policies) | git::https://github.com/bitrockteam/caravan-nomad//modules/nomad-policies | refs/tags/v0.1.5 |
-| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/bitrockteam/caravan-vault//modules/secrets | refs/tags/v0.3.16 |
-| <a name="module_vault-policies"></a> [vault-policies](#module\_vault-policies) | git::https://github.com/bitrockteam/caravan-vault//modules/default-policies | refs/tags/v0.3.16 |
+| <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/bitrockteam/caravan-vault//modules/secrets | refs/tags/v0.3.23 |
+| <a name="module_vault-policies"></a> [vault-policies](#module\_vault-policies) | git::https://github.com/bitrockteam/caravan-vault//modules/default-policies | refs/tags/v0.3.23 |
 
 ## Resources
 
@@ -93,6 +93,7 @@ Assumption:
 | <a name="input_azure_vault_resource_name"></a> [azure\_vault\_resource\_name](#input\_azure\_vault\_resource\_name) | n/a | `string` | `""` | no |
 | <a name="input_azure_worker_plane_service_principal_ids"></a> [azure\_worker\_plane\_service\_principal\_ids](#input\_azure\_worker\_plane\_service\_principal\_ids) | n/a | `list(string)` | `[]` | no |
 | <a name="input_bootstrap_state_backend_provider"></a> [bootstrap\_state\_backend\_provider](#input\_bootstrap\_state\_backend\_provider) | Use an external state backend for inferencing configuration variables | `string` | `""` | no |
+| <a name="input_bootstrap_state_bucket_name"></a> [bootstrap\_state\_bucket\_name](#input\_bootstrap\_state\_bucket\_name) | n/a | `string` | `""` | no |
 | <a name="input_bootstrap_state_bucket_name_prefix"></a> [bootstrap\_state\_bucket\_name\_prefix](#input\_bootstrap\_state\_bucket\_name\_prefix) | Common state config | `string` | `"states-bucket"` | no |
 | <a name="input_bootstrap_state_object_name_prefix"></a> [bootstrap\_state\_object\_name\_prefix](#input\_bootstrap\_state\_object\_name\_prefix) | n/a | `string` | `"infraboot/terraform/state"` | no |
 | <a name="input_ca_cert_file"></a> [ca\_cert\_file](#input\_ca\_cert\_file) | n/a | `string` | `null` | no |
@@ -101,6 +102,7 @@ Assumption:
 | <a name="input_consul_internal_address"></a> [consul\_internal\_address](#input\_consul\_internal\_address) | n/a | `string` | `"127.0.0.1:8500"` | no |
 | <a name="input_control_plane_role_name"></a> [control\_plane\_role\_name](#input\_control\_plane\_role\_name) | n/a | `string` | `"control-plane"` | no |
 | <a name="input_custom_vault_policies_path"></a> [custom\_vault\_policies\_path](#input\_custom\_vault\_policies\_path) | Extra | `string` | `null` | no |
+| <a name="input_enable_nomad"></a> [enable\_nomad](#input\_enable\_nomad) | Enables and setup Nomad cluster | `bool` | `true` | no |
 | <a name="input_gcp_control_plane_service_accounts"></a> [gcp\_control\_plane\_service\_accounts](#input\_gcp\_control\_plane\_service\_accounts) | n/a | `list(string)` | `[]` | no |
 | <a name="input_gcp_csi"></a> [gcp\_csi](#input\_gcp\_csi) | GCP auth provider | `bool` | `false` | no |
 | <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | GCP state config | `string` | `""` | no |
